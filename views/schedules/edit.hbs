@@ -1,0 +1,48 @@
+<h1>
+  {{title}}
+</h1>
+<form method="POST">
+  {{! Input names have to match the name of the fields in the mongo schema object }}
+  {{! Mapping is not automatic, but it's best practices }}
+  <fieldset>
+    <label for="employeeName" class="col-2">
+      Employee Name:
+    </label>
+    <input name="employeeName" id="employeeName" required value="{{schedule.employeeName}}" />
+  </fieldset>
+  <fieldset>
+    <label for="scheduleDate" class="col-2">
+      Schedule Date:
+    </label>
+    {{!-- Use hbs helper function to format date stored in the database accordingly --}}
+    <input name="scheduleDate" id="scheduleDate" required type="date" value="{{toShortDate schedule.scheduleDate}}" />
+  </fieldset>
+  <fieldset>
+    <label for="department" class="col-2">
+      Department:
+    </label>
+    {{! <input name="course" id="course" required /> }}
+    <select name="department" id="department">
+      {{#each departments}}
+        {{! Use HBS helper function to customize rendering }}
+        {{createOptionElement this.department ../schedule.department}}
+      {{/each}}
+    </select>
+  </fieldset>
+  {{! Add fieldset for status }}
+  <fieldset>
+    <label for="isScheduled" class="col-2">
+      Scheduled:
+    </label>
+    {{! <input name="course" id="course" required /> }}
+    <select name="isScheduled" id="isScheduled">
+        {{! Use HBS helper function to customize rendering }}
+        {{createOptionElement "Yes" schedule.isScheduled}}
+        {{createOptionElement "No" schedule.isScheduled}}
+    </select>
+  </fieldset>
+  {{! Button needs to be inside <form> element to trigger POST }}
+  <button class="offset-3 btn btn-primary">
+    Save
+  </button>
+</form>

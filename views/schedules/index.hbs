@@ -1,0 +1,41 @@
+<h1 class="display-6 m-3">{{title}}</h1>
+
+{{!-- CRUD Functionality --}}
+{{!-- CREATE button --}}
+{{#if user}}
+  <a href="/schedules/add" class="btn btn-success btn-lg mb-3 d-block mx-auto">+ Add a new schedule</a>
+{{/if}}
+
+{{!-- READ Show Table to view all projects in db --}}
+<div class="table-responsive">
+  <table class="table table-bordered table-hover table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Employee Name</th>
+        <th>Schedule Date</th>
+        <th>Department</th>
+        <th>Schedule Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each dataset}}
+      <tr>
+        <td>{{this.employeeName}}</td>
+        <td>{{toShortDate this.scheduleDate}}</td>
+        <td>{{this.department}}</td>
+        <td>{{this.isScheduled}}</td>
+        {{!-- UPDATE and DELETE buttons --}}
+        <td>
+          {{#if ../user}}
+            <a href="/schedules/edit/{{this._id}}" class="btn btn-warning btn-sm me-2">Edit</a>
+            <a href="/schedules/delete/{{this._id}}" onclick="return confirmDeletion()" class="btn btn-danger btn-sm">Delete</a>
+          {{/if}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+
+<script src="/javascripts/scripts.js"></script>

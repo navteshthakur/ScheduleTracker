@@ -1,0 +1,23 @@
+body {
+  padding: 50px;
+  font: 14px "Cambria", Helvetica, Arial, sans-serif;
+  background-color: rgb(178, 207, 231);
+}
+
+a {
+  color: #63081d;
+}
+li.nav-item:hover {
+  background-color: #cdf7d381; /* Dark background on hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+li.nav-item:hover a {
+  color: #fff; /* Change text color to white */
+  font-weight: bold; /* Make text bold on hover */
+}
+
+/* Optional: Additional smooth transition for navbar links */
+.navbar-nav .nav-link {
+  transition: color 0.3s ease;
+}
